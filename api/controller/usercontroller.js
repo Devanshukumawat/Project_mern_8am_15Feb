@@ -1,4 +1,5 @@
 const RegCollection = require("../models/reg")
+const AdminProductCollections = require("../models/adminproduct")
 
 exports.HomePageController = (req,res)=>{
     res.send("Home page '👤 ")
@@ -31,4 +32,10 @@ exports.LoginDataController = async(req,res)=>{
     }else{
         res.json({Message:"Email & Password did not match.😕"})
     }
+}
+
+
+exports.UserProductsController = async(req,res)=>{
+    const record = await AdminProductCollections.find({productStatus:"In-Stock"})
+    res.json({Data:record})
 }

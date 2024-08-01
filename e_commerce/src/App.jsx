@@ -7,6 +7,8 @@ import Admin from "./admin/Admin";
 import Products from "./admin/Products";
 import ProductAdd from "./admin/ProductAdd";
 import ProductUpdate from "./admin/ProductUpdate";
+import Footer from "./common/Footer";
+import UserQuery from "./admin/UserQuery";
 
 
 function App() {
@@ -22,7 +24,9 @@ function App() {
           <Route path="/products" element={<Products/>}/>
           <Route path="/productadd" element={<ProductAdd/>}/>
           <Route path="/updateproduct/:id" element={<ProductUpdate/>}/>
+          <Route path="/userquery" element={<UserQuery/>}/>
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </>
    );

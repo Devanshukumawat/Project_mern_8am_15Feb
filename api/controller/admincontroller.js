@@ -28,3 +28,17 @@ exports.AdminUpdateProductController = async(req,res)=>{
     const record = await AdminProductCollection.findById(id)
     res.json({Data:record})
 }
+
+
+exports.AdminupdatedDataController = async (req,res)=>{
+    const id = req.params.id
+    const {title,desc,price,Pstatus} = req.body
+    await AdminProductCollection.findByIdAndUpdate(id,{
+        productTitle:title,
+        productDesc:desc,
+        productPrice:price,
+        productStatus:Pstatus
+    })
+
+    res.json({Message:"Successfully Update Product..🥳"})
+}

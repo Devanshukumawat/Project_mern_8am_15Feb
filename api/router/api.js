@@ -11,7 +11,8 @@ router.post("/adminproductsadd",AdminC.AdminproductsController)
 router.get("/alladminproduct",AdminC.AlladminproductController)
 router.delete("/adminproductdelete/:id",AdminC.AdminProductDeleteController)
 router.get("/adminupdatedata/:id",AdminC.AdminUpdateProductController)
-
+router.put("/adminupdatedproduct/:id",AdminC.AdminupdatedDataController)
+router.get("/userproducts",UserC.UserProductsController)
 
 
 

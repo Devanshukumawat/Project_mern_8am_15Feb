@@ -33,9 +33,9 @@ function ProductAdd() {
 
     return ( 
         <>
-             <div className="w-4/5 h-screen flex justify-center mx-auto mt-4">
+             <div className="w-11/12 h-screen flex justify-center mx-auto mt-4">
                 <Left/>
-                <div className="w-1/2">
+                <div className="w-3/5">
                     <h1 className="text-3xl font-bold mb-5">Product Add Here</h1>
                     <form onSubmit={handleForm}>  
                         <TextField id="outlined-basic" label="Product Title" variant="outlined" className="w-full" sx={{marginBottom:"20px"}}

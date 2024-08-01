@@ -6,7 +6,8 @@ const {Schema,model} = mongoose
 const productSchema = new Schema({
     productTitle:String,
     productDesc:String,
-    productPrice:Number
+    productPrice:Number,
+    productStatus:{type:String,default:"Out-Of-Stock"}
 })
 
 const productColllection = model("adminproducts",productSchema)
