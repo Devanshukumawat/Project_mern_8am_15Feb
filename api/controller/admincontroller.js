@@ -1,12 +1,15 @@
 const AdminProductCollection = require("../models/adminproduct")
+const QueryCollection =  require("../models/query")
 
 
 exports.AdminproductsController = async(req,res)=>{
+    const imageName = req.file.filename
     const {Ptitle,PDesc,Pprice} =req.body
     const record = new AdminProductCollection({
         productTitle:Ptitle,
         productDesc:PDesc,
-        productPrice:Pprice
+        productPrice:Pprice,
+        productImage:imageName,
     })
     await record.save()
     res.json({Data:record,Message:"Successfully Add Product.👍"})
@@ -41,4 +44,10 @@ exports.AdminupdatedDataController = async (req,res)=>{
     })
 
     res.json({Message:"Successfully Update Product..🥳"})
+}
+
+
+exports.QueryDataController = async(req,res)=>{
+    const record = await QueryCollection.find()
+    res.json({Data:record})
 }

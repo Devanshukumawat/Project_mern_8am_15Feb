@@ -29,7 +29,7 @@ function Product() {
             >
             {
                 productData.map((value,index)=>(
-                    <Cards data={value}/>
+                    <Cards data={value} key={index}/>
                 ))
             }
             </Box>

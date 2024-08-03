@@ -18,7 +18,6 @@ function ProductUpdate() {
         fetch(`/api/adminupdatedata/${id}`).then((res)=>{
             return res.json()
         }).then((result)=>{
-            console.log(result)
             setTitle(result.Data.productTitle)
             setDesc(result.Data.productDesc)
             setPrice(result.Data.productPrice)
@@ -47,10 +46,10 @@ function ProductUpdate() {
 
     return ( 
         <>
-             <div className="w-11/12 h-screen flex justify-center mx-auto mt-4">
+             <div className="w-11/12  flex-col justify-center mx-auto mt-4">
                 <Left/>
-                <div className="w-3/5">
-                    <h1 className="text-3xl font-bold mb-5">Update Product</h1>
+                <div className="w-full mt-4">
+                    <h1 className="text-3xl font-bold mb-5  text-blue-700 text-center">Update Product</h1>
                     <form onSubmit={handleForm}>  
                         <FormLabel>Product Title</FormLabel>
                         <TextField id="outlined-basic"  variant="outlined" className="w-full" sx={{marginBottom:"20px"}}

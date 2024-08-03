@@ -1,5 +1,6 @@
 const RegCollection = require("../models/reg")
 const AdminProductCollections = require("../models/adminproduct")
+const QueryCollection = require("../models/query")
 
 exports.HomePageController = (req,res)=>{
     res.send("Home page '👤 ")
@@ -38,4 +39,18 @@ exports.LoginDataController = async(req,res)=>{
 exports.UserProductsController = async(req,res)=>{
     const record = await AdminProductCollections.find({productStatus:"In-Stock"})
     res.json({Data:record})
+}
+
+exports.userQueryController = async(req,res)=>{
+
+    const {userEmail,userQuery} = req.body
+
+    const record = new QueryCollection({
+        UserEmail:userEmail,
+        UserQuery:userQuery,
+    })
+
+    await record.save()
+
+    res.json({Data:record,Message:"Successfully Query Post..👍"})
 }

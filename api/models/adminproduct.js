@@ -7,6 +7,7 @@ const productSchema = new Schema({
     productTitle:String,
     productDesc:String,
     productPrice:Number,
+    productImage:String,
     productStatus:{type:String,default:"Out-Of-Stock"}
 })
 

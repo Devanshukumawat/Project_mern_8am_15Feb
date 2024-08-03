@@ -12,8 +12,9 @@ export default function Cards(props) {
     <Card sx={{ maxWidth: 345 , backgroundColor:"black" , color:"white" }}>
       <CardMedia
         sx={{ height: 140 , backgroundSize:"contain" }}
-        image="https://images.pexels.com/photos/207353/pexels-photo-207353.jpeg?auto=compress&cs=tinysrgb&w=800"
+        image={`/uploads/${data.productImage}`}
         title="green iguana"
+       
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
