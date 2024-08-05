@@ -34,6 +34,7 @@ router.put("/adminupdatedproduct/:id",AdminC.AdminupdatedDataController)
 router.get("/userproducts",UserC.UserProductsController)
 router.post("/userquery",UserC.userQueryController)
 router.get("/querydata",AdminC.QueryDataController)
+router.post("/adminqueryreply/:query",AdminC.QueryReplyController)
 
 
 

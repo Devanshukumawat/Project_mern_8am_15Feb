@@ -9,6 +9,7 @@ import ProductAdd from "./admin/ProductAdd";
 import ProductUpdate from "./admin/ProductUpdate";
 import Footer from "./common/Footer";
 import UserQuery from "./admin/UserQuery";
+import QueryReply from "./admin/QueryReply";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/productadd" element={<ProductAdd/>}/>
           <Route path="/updateproduct/:id" element={<ProductUpdate/>}/>
           <Route path="/userquery" element={<UserQuery/>}/>
+          <Route path="/queryreply/:id" element={<QueryReply/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

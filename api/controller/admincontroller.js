@@ -1,5 +1,6 @@
 const AdminProductCollection = require("../models/adminproduct")
 const QueryCollection =  require("../models/query")
+const nodemailer = require("nodemailer");
 
 
 exports.AdminproductsController = async(req,res)=>{
@@ -50,4 +51,14 @@ exports.AdminupdatedDataController = async (req,res)=>{
 exports.QueryDataController = async(req,res)=>{
     const record = await QueryCollection.find()
     res.json({Data:record})
+}
+
+exports.QueryReplyController = async (req,res)=>{
+    const id = req.params.query
+    const {mailSub,mailBody} = req.body
+
+    const mailData = await QueryCollection.findById(id)
+
+   
+
 }

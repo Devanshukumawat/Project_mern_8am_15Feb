@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Left from "./Left";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
+import ReplyIcon from '@mui/icons-material/Reply';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function UserQuery() {
 
@@ -86,13 +88,13 @@ function UserQuery() {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black"
                   >
-                    <Button>Reply</Button>
+                   <Link to={`/queryreply/${value._id}`}><Button endIcon={<ReplyIcon/>} color="success" >Reply</Button></Link> 
                   </th>
                   <th
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black"
                   >
-                    <Button variant="text" color="error">
+                    <Button variant="text" color="error" endIcon={<DeleteIcon/>}>
                       Delete
                     </Button>
                   </th>

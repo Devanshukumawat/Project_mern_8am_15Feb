@@ -29,8 +29,8 @@ function Products() {
       })
       .then((result) => {
         if (result.Message) {
-          navigate("/products");
           toast.success(result.Message);
+          navigate("/products");
         }
       });
   }
