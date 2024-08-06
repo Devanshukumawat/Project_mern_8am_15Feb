@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Left from "./Left";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import ReplyIcon from '@mui/icons-material/Reply';
 import DeleteIcon from '@mui/icons-material/Delete';
+import toast from "react-hot-toast";
 
 function UserQuery() {
 
     const [querData,setQueryData] = useState([])
+    const navigate = useNavigate()
 
     useEffect(()=>{
         fetch("/api/querydata").then((res)=>{
@@ -17,6 +19,19 @@ function UserQuery() {
             setQueryData(result.Data)
         })
     },[])
+
+    function handleDelete(id){
+      fetch(`/api/querydelete/${id}`,{
+        method:"DELETE"
+      }).then((res)=>{
+        return res.json()
+      }).then((result)=>{
+        toast.success(result.Message)
+        navigate('/userquery')
+      })
+    }
+
+  
     
 
   return (
@@ -94,7 +109,7 @@ function UserQuery() {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black"
                   >
-                    <Button variant="text" color="error" endIcon={<DeleteIcon/>}>
+                    <Button variant="text" color="error" endIcon={<DeleteIcon/>} onClick={()=>{handleDelete(value._id)}}>
                       Delete
                     </Button>
                   </th>

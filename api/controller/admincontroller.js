@@ -1,5 +1,6 @@
 const AdminProductCollection = require("../models/adminproduct")
 const QueryCollection =  require("../models/query")
+const RegCollection = require("../models/reg")
 const nodemailer = require("nodemailer");
 
 
@@ -59,6 +60,35 @@ exports.QueryReplyController = async (req,res)=>{
 
     const mailData = await QueryCollection.findById(id)
 
-   
+    const transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false, // Use `true` for port 465, `false` for all other ports
+        auth: {
+          user:"devanshukumawat063@gmail.com", 
+            pass:"bchiseqhavgeaomi", 
+        },
+      });
 
+      const info = await transporter.sendMail({
+        from: "devanshukumawat063@gmail.com", // sender address
+        to: mailData.UserEmail , // list of receivers
+        subject: mailSub, // Subject line
+        text: mailBody, // plain text body
+        html: "<b>Hello world?</b>", // html body
+      });
+
+}
+
+
+exports.deleteQueryController = async (req,res)=>{
+    const id = req.params.id
+    await QueryCollection.findByIdAndDelete(id)
+    res.json({Message:"Successfully Delete..👆"})
+}
+
+
+exports.UserDataController = async(req,res)=>{
+    const record = await RegCollection.find()
+    res.json({Data:record})
 }
