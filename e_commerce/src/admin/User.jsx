@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import Left from "./Left";
+import {toast} from "react-hot-toast"
 import { Button } from "@mui/material";
 import ToggleOnIcon from '@mui/icons-material/ToggleOn';
+import ToggleOffIcon from '@mui/icons-material/ToggleOff';
+import { useNavigate } from "react-router-dom";
 
 function User() {
 
     const [user,setUser] = useState([])
+    const navigate =  useNavigate()
 
     useEffect(()=>{
         fetch("/api/userdata").then((res)=>{
@@ -15,6 +19,24 @@ function User() {
             setUser(result.Data)
         })
     },[])
+
+
+    function handleStatus(id){
+      
+      fetch(`/api/updateuserstatus/${id}`,{
+        method:"PUT"
+      }).then((res)=>{
+        return res.json()
+      }).then((result)=>{
+        if(result){
+          toast.success(result.Message)
+          navigate("/usermanage")
+        }
+      })
+
+
+    }
+
 
     return ( 
         <>
@@ -74,7 +96,13 @@ function User() {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black"
                   >
-                    <Button color="success" endIcon={<ToggleOnIcon/>}>{value.status}</Button>
+                  {
+                    value.status === "Active" ? <Button color="success" endIcon={<ToggleOnIcon/>} onClick={()=>{handleStatus(value._id)}}>{value.status}</Button> :
+
+                    <Button color="error" endIcon={<ToggleOffIcon/>} onClick={()=>{handleStatus(value._id)}}>{value.status}</Button>
+
+                  }
+                    
                   </th>
                   
                 </tr>

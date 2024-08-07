@@ -39,15 +39,18 @@ export default function Login() {
       }).then((res)=>{
         return res.json()
       }).then((result)=>{
+      
         if(result.Message === "Successfully Login.🥳"){
           if(result.Data && result.Data.useremail === "admin123@gmail.com"){
             navigate("/admin")
             toast.success("Welcome Admin.👤")
-          }else{
+          }
+          else{
             navigate("/product")
             toast.success(result.Message)
           }  
-        }else{
+        }
+        else{
           toast.error(result.Message)
         }
 

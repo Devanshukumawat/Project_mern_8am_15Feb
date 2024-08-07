@@ -109,7 +109,7 @@ function ProductAdd() {
               onChange={(e)=>{setPimg(e.target.files[0])}}
             >
               Upload Product Image
-              <VisuallyHiddenInput type="file" />
+              <VisuallyHiddenInput type="file" required />
             </Button>
 
             <Button

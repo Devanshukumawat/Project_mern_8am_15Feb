@@ -37,6 +37,7 @@ router.get("/querydata",AdminC.QueryDataController)
 router.post("/adminqueryreply/:query",AdminC.QueryReplyController)
 router.delete("/querydelete/:id",AdminC.deleteQueryController)
 router.get("/userdata",AdminC.UserDataController)
+router.put("/updateuserstatus/:id",AdminC.UpdateStatusController)
 
 
 

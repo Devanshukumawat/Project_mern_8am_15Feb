@@ -1,12 +1,16 @@
 import { Button, TextField } from "@mui/material";
 import Left from "./Left";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 function QueryReply() {
 
     const {id} = useParams()
 
+    const navigate = useNavigate()
+
+    
    const [mailSub,setMailsub] = useState("")
    const [mailBody,setMailbody] = useState("")
 
@@ -17,6 +21,13 @@ function QueryReply() {
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify(formdata)
+    }).then((res)=>{
+      return res.json()
+    }).then((result)=>{
+      if(result.Message){
+        toast.success(result.Message)
+        navigate("/userquery")
+      }
     })
   }
 

@@ -9,6 +9,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 function Products() {
   const [productData, setProductData] = useState([]);
   const navigate = useNavigate();
+  console.log(navigate)
 
   useEffect(() => {
     fetch("/api/alladminproduct")
