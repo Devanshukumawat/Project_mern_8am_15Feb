@@ -7,10 +7,12 @@ exports.HomePageController = (req,res)=>{
 }
 
 exports.RegDataController = async(req,res)=>{
-    const {email,password} = req.body
+    const {email,password,firstName,lastName} = req.body
     const record = new RegCollection({
         useremail:email,
-        userpassword:password
+        userpassword:password,
+        userfisrt:firstName,
+        userlast:lastName,
      })
 
      await record.save()

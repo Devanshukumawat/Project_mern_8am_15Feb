@@ -14,6 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {toast} from "react-hot-toast"
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { UserName } from '../features/userSlice';
 
 
 
@@ -22,20 +24,26 @@ import { useNavigate } from 'react-router-dom';
 const defaultTheme = createTheme();
 
 export default function Registration() {
+
+  
+
   const navigate = useNavigate()
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
  
+
       const email = data.get('email')
       const password = data.get('password')
       const firstName = data.get('firstName')
       const lastName = data.get('lastName')
 
       console.log(firstName,lastName)
+
+      
     
 
-    const formdata = {email,password}
+    const formdata = {email,password,firstName,lastName}
 
     fetch('/api/regdata',{
         method:"POST",

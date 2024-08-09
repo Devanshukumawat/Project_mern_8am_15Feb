@@ -12,13 +12,29 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { useDispatch, useSelector } from 'react-redux';
+import {  Link, useNavigate } from 'react-router-dom';
+import { Badge, Fab } from '@mui/material';
+import { UserName } from '../features/userSlice';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [
+  {name:"Profile",url:"/fdgfh"},
+  {name:"Log-Out",url:"/"}
+];
 
 function Navbar() {
+
+
+
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const firstName = useSelector((state)=>state.Login.userName)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -31,9 +47,12 @@ function Navbar() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  
+
+  function handleLogout(){
+    navigate("/")
+    dispatch(UserName({FirstName:""}))
+  }
 
   return (
     <AppBar position="static" sx={{backgroundColor:"purple"}}>
@@ -126,33 +145,27 @@ function Navbar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Link to={"/cart"}>
+              <Badge badgeContent={4} color="error">
+              <ShoppingCartIcon sx={{marginRight:"10px"}}/>
+              </Badge>
+              </Link>   
+            </IconButton>
+            
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+
+              {
+                firstName===""? <Avatar src='' alt=''/> :
+                <Fab variant='extended' color='success'>
+                <Avatar sx={{marginRight:"5px",bgcolor:"orange"}} >{firstName && firstName[0]}</Avatar>
+                {firstName}
+                </Fab>
+              }
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            <Button variant='contained' color='error' sx={{marginLeft:"10px"}} onClick={handleLogout}>Log-Out</Button>
           </Box>
         </Toolbar>
       </Container>

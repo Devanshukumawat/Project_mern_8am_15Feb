@@ -28,6 +28,7 @@ function User() {
       }).then((res)=>{
         return res.json()
       }).then((result)=>{
+        console.log(result)
         if(result){
           toast.success(result.Message)
           navigate("/usermanage")
@@ -58,6 +59,11 @@ function User() {
                   </th>
 
                   <th scope="col" className="px-6 py-3">
+                    UserName
+                  </th>
+
+
+                  <th scope="col" className="px-6 py-3">
                     Create Date
                   </th>
                   <th scope="col" className="px-6 py-3">
@@ -83,6 +89,15 @@ function User() {
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black"
                   >
                     {value.useremail
+                    }
+                  </th>
+
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black"
+                  >
+                    {value.userfisrt
+
                     }
                   </th>
 

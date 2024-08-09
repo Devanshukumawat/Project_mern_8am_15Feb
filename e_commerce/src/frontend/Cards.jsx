@@ -5,8 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useDispatch } from 'react-redux';
+import { AddToCart } from '../features/cartSlice';
 
 export default function Cards(props) {
+    const diaspatch = useDispatch()
     const {data} = props
   return (
     <Card sx={{ maxWidth: 345 , backgroundColor:"black" , color:"white" }}>
@@ -28,8 +31,8 @@ export default function Cards(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small" variant='contained' color='success' onClick={()=>{diaspatch(AddToCart(data))}}>Add To cart</Button>
+        <Button size="small" variant='contained' color='info'>Learn More</Button>
       </CardActions>
     </Card>
   );

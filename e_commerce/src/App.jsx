@@ -11,6 +11,8 @@ import Footer from "./common/Footer";
 import UserQuery from "./admin/UserQuery";
 import QueryReply from "./admin/QueryReply";
 import User from "./admin/User";
+import Cart from "./frontend/Cart";
+
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           <Route path="/userquery" element={<UserQuery/>}/>
           <Route path="/queryreply/:id" element={<QueryReply/>}/>
           <Route path="/usermanage" element={<User/>}/>
+          <Route path="/cart" element={<Cart/>}/>
+          
         </Routes>
         <Footer/>
       </BrowserRouter>
