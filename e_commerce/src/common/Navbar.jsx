@@ -18,7 +18,9 @@ import { Badge, Fab } from '@mui/material';
 import { UserName } from '../features/userSlice';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [
+  {name:"Products", url:"/product"}
+];
 const settings = [
   {name:"Profile",url:"/fdgfh"},
   {name:"Log-Out",url:"/"}
@@ -35,6 +37,7 @@ function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const firstName = useSelector((state)=>state.Login.userName)
+  const cart = useSelector((state)=>state.AllCart.cart)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -107,8 +110,8 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -134,24 +137,30 @@ function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
+              <Link to={`${page.url}`}>
               <Button
-                key={page}
+                key={page.name}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.name}
               </Button>
+              </Link> 
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          {
+            firstName===""?"":
+            <IconButton size="large" aria-label="show 4 new mails" color="success">
           <Link to={"/cart"}>
-              <Badge badgeContent={4} color="error">
-              <ShoppingCartIcon sx={{marginRight:"10px"}}/>
+              <Badge badgeContent={cart.length} color="error">
+              <ShoppingCartIcon sx={{marginRight:"10px"}} color='success'/>
               </Badge>
               </Link>   
             </IconButton>
+          }
+         
             
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -165,7 +174,10 @@ function Navbar() {
               }
               </IconButton>
             </Tooltip>
-            <Button variant='contained' color='error' sx={{marginLeft:"10px"}} onClick={handleLogout}>Log-Out</Button>
+            {
+              firstName===""?"": <Button variant='contained' color='error' sx={{marginLeft:"10px"}} onClick={handleLogout}>Log-Out</Button>
+            }
+           
           </Box>
         </Toolbar>
       </Container>

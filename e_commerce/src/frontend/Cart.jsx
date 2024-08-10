@@ -38,14 +38,7 @@ return (
           <MDBTypography tag="h3" className="fw-normal mb-0 text-black">
             Shopping Cart
           </MDBTypography>
-          <div>
-            <p className="mb-0">
-              <span className="text-muted">Sort by:</span>
-              <a href="#!" className="text-body">
-                price <i className="fas fa-angle-down mt-1"></i>
-              </a>
-            </p>
-          </div>
+          
         </div>
 
             {
@@ -95,7 +88,9 @@ return (
         
             <MDBCard className="mb-4">
           <MDBCardBody>
-          <h1>Total Price:- {Allcart.totalPrice}</h1>
+          {
+            cart.length===0?"Your shopping cart is empty.":<h3>Total Amount :-  {Allcart.totalPrice}</h3>
+          } 
           </MDBCardBody>
         </MDBCard>
        
